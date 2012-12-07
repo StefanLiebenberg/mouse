@@ -30,9 +30,10 @@ goog.addSingletonGetter(mouse.query.Parser);
  *        The parsed ast.
  */
 mouse.query.Parser.prototype.parse = function(query) {
-  var ast, query = goog.string.trim(query);
+  query = goog.string.trim(query);
+  var ast;
   if (this.store_.containsKey(query)) {
-    ast = /* @type {mouse.query.DSL} */ (this.store_.get(query));
+    ast = /** @type {mouse.query.ast.Element} */ (this.store_.get(query));
   } else {
     ast = this.parseInternal(query);
     this.store_.set(query, ast);

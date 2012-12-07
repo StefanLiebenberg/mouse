@@ -5,7 +5,7 @@ goog.require('mouse.query.ast.Ancestor');
 goog.require('mouse.query.ast.Classname');
 goog.require('mouse.query.ast.Parent');
 goog.require('mouse.query.ast.Tagname');
-
+goog.require('mouse.query.Parser');
 
 
 /**
@@ -19,7 +19,7 @@ goog.addSingletonGetter(mouse.query.Compiler);
  *
  * @param {mouse.query.ast.Element} element
  *        Some element.
- * @return {function(Node, Node) : boolean}
+ * @return {?function(!Node, !Node) : boolean}
  *        The compiled match function function.
  */
 mouse.query.Compiler.prototype.compile = function(element) {
@@ -37,6 +37,7 @@ mouse.query.Compiler.prototype.compile = function(element) {
     default:
       goog.asserts.fail('unknown type');
   }
+  return null;
 };
 
 
