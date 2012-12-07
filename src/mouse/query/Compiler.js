@@ -25,6 +25,8 @@ goog.addSingletonGetter(mouse.query.Compiler);
 mouse.query.Compiler.prototype.compile = function(element) {
   var t = mouse.query.ast.Type;
   switch (element.type) {
+    case t.ALL:
+      return goog.functions.TRUE;
     case t.PARENT:
       return this.getParentFunction(
           /** @type {mouse.query.ast.Parent} */ (element));

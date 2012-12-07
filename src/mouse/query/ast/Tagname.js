@@ -13,7 +13,7 @@ goog.require('mouse.query.ast.Type');
  */
 mouse.query.ast.Tagname = function(tagname) {
   goog.base(this, mouse.query.ast.Type.TAGNAME);
-  this.tagname = tagname;
+  this.tagname = tagname.toUpperCase();
 };
 goog.inherits(mouse.query.ast.Tagname, mouse.query.ast.Element);
 
@@ -22,5 +22,5 @@ goog.inherits(mouse.query.ast.Tagname, mouse.query.ast.Element);
  * @override
  */
 mouse.query.ast.Tagname.prototype.toString = function() {
-  return this.tagname;
+  return this.tagname.toLowerCase();
 };

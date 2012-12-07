@@ -1,6 +1,7 @@
 goog.provide('mouse.query.Query');
 goog.require('mouse.query.Compiler');
 goog.require('mouse.query.Parser');
+goog.require('goog.dom');
 
 
 
@@ -9,13 +10,17 @@ goog.require('mouse.query.Parser');
  *
  * @param {string} query
  *        The selector query.
+ *
+ * @param {boolean=} opt_includeNodes
+ *        Include nodes.
  */
-mouse.query.Query = function(query) {
+mouse.query.Query = function(query, opt_includeNodes) {
   var compiler, parser, ast;
   compiler = mouse.query.Compiler.getInstance();
   parser = mouse.query.Parser.getInstance();
   ast = parser.parse(query);
   this.matches = compiler.compile(ast);
+  this.includeNodes = opt_includeNodes || false;
 };
 
 
@@ -31,7 +36,8 @@ mouse.query.Query = function(query) {
 mouse.query.Query.prototype.all_ = function(node, context, results) {
   node = node.firstChild;
   while (node) {
-    if (this.matches(node, context)) {
+    if ((this.includeNodes || goog.dom.isElement(node)) &&
+      this.matches(node, context)) {
       goog.array.insert(results, node);
     }
     this.all_(node, context, results);
@@ -66,7 +72,8 @@ mouse.query.Query.prototype.all = function(opt_node) {
 mouse.query.Query.prototype.first_ = function(node, context) {
   node = node.firstChild;
   while (node) {
-    if (this.matches(node, context)) {
+    if ((this.includeNodes || goog.dom.isElement(node)) &&
+      this.matches(node, context)) {
       return node;
     }
     var found = this.first_(node, context);

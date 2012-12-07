@@ -49,7 +49,7 @@ test.mouse.query.Parser.TestAncestor = function(query) {
 test.mouse.query.Parser.TestTagname = function(query) {
   var parsed = parser.parse(query);
   assertTrue(parsed instanceof mouse.query.ast.Tagname);
-  assertEquals(query, parsed.tagname);
+  assertEquals(query, parsed.toString());
 };
 
 
