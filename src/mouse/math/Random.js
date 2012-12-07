@@ -4,32 +4,34 @@
  */
 goog.provide('mouse.math.Random');
 
+
+
 /**
  * @constructor
  * @param {number=} opt_seed
  *        Optional seed for this random generator.
  */
-mouse.math.Random = function (opt_seed) {
+mouse.math.Random = function(opt_seed) {
   this.seed_ = goog.isDefAndNotNull(opt_seed) ? opt_seed : +new Date();
   this.m_ = Math.pow(2, 32);
   this.a_ = 1103515245;
   this.c_ = 12345;
   this.reset();
-}
+};
+
 
 /**
  * Sets the state to the original seed. And steps an optional count in.
  */
-mouse.math.Random.prototype.reset = function (opt_count) {
+mouse.math.Random.prototype.reset = function(opt_count) {
   this.state_ = this.seed_;
   this.count_ = 0;
-  if(goog.isDefAndNotNull(opt_count) && opt_count > 0) {
-    while(opt_count--) {
+  if (goog.isDefAndNotNull(opt_count) && opt_count > 0) {
+    while (opt_count--) {
       this.nextState();
     }
   }
-}
-
+};
 
 
 /**
@@ -38,9 +40,10 @@ mouse.math.Random.prototype.reset = function (opt_count) {
  * @return {number}
  *         A integer value.
  */
-mouse.math.Random.prototype.getNextState = function () {
+mouse.math.Random.prototype.getNextState = function() {
   return (this.a_ * this.state_ + this.c_) % this.m_;
-}
+};
+
 
 /**
  * Returns the next state. Similiar to .getNextState, but also modifies the
@@ -49,37 +52,40 @@ mouse.math.Random.prototype.getNextState = function () {
  * @return {number}
  *         A integer value.
  */
-mouse.math.Random.prototype.nextState = function () {
+mouse.math.Random.prototype.nextState = function() {
   this.count_++;
   return this.state_ = this.getNextState();
-}
+};
+
 
 /**
  * @return {number}
  *         The a random float between 0 and 1.
  */
-mouse.math.Random.prototype.random = function () {
+mouse.math.Random.prototype.random = function() {
   return this.nextState() / (this.m_ - 1);
-}
+};
+
 
 /**
  * Return a random integer between max and min values.
  * @param {number} min The minimum Number.
- * @param {number} max The maximum Number
+ * @param {number} max The maximum Number.
  * @return {number}
  *      The value.
  */
 mouse.math.Random.prototype.betweenFloat = function(min, max) {
   return min + ((max - min) * this.random());
-}
+};
+
 
 /**
  * Return a random integer between max and min values.
  * @param {number} min The minimum Number.
- * @param {number} max The maximum Number
+ * @param {number} max The maximum Number.
  * @return {number}
  *      The value.
  */
-mouse.math.Random.prototype.between = function(min, max){
-  return Math.round(this.betweenFloat(min, max))
-}
+mouse.math.Random.prototype.between = function(min, max) {
+  return Math.round(this.betweenFloat(min, max));
+};
