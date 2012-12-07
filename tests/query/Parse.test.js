@@ -78,6 +78,24 @@ goog.exportSymbol('test_Parse_Tagname',
 /**
  * Custom test
  */
+test.mouse.query.Parser.TestCache = function() {
+  var query1 = 'div > span'
+  var ast1 = parser.parse(query1);
+
+  var query2 = 'span > div';
+  var ast2 = parser.parse(query2);
+
+  assertEquals(ast1.parent, ast2.element);
+  assertEquals(ast2.parent, ast1.element);
+};
+goog.exportSymbol('test_CacheTest',
+    test.mouse.query.Parser.TestCache);
+
+
+
+/**
+ * Custom test
+ */
 test.mouse.query.Parser.ParseCustom = function() {
   var query = 'div span:child > #blue.red';
   var ast = parser.parse(query);

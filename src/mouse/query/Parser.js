@@ -20,6 +20,7 @@ goog.require('mouse.query.ast.Parent');
 mouse.query.Parser = function() {
   this.store_ = new goog.structs.Map();
 };
+goog.addSingletonGetter(mouse.query.Parser);
 
 
 /**
@@ -29,7 +30,7 @@ mouse.query.Parser = function() {
  *        The parsed ast.
  */
 mouse.query.Parser.prototype.parse = function(query) {
-  var ast;
+  var ast, query = goog.string.trim(query);
   if (this.store_.containsKey(query)) {
     ast = /* @type {mouse.query.DSL} */ (this.store_.get(query));
   } else {
@@ -47,11 +48,6 @@ mouse.query.Parser.prototype.parse = function(query) {
  *        The parsed ast.
  */
 mouse.query.Parser.prototype.parseInternal = function(query) {
-  query = goog.string.trim(query);
-
-
-  console.log('parsing', query);
-
   if (goog.string.isEmpty(query)) {
     goog.asserts.fail('empty query');
   }

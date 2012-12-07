@@ -12,6 +12,7 @@ goog.require('mouse.query.ast.Tagname');
  * @constructor
  */
 mouse.query.Compiler = function() {};
+goog.addSingletonGetter(mouse.query.Compiler);
 
 
 /**
