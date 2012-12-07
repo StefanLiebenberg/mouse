@@ -1,7 +1,7 @@
 goog.provide('test.mouse.query.Query');
-goog.require('mouse.query.Query');
+goog.require('goog.dom');
 goog.require('goog.testing.jsunit');
-goog.require('goog.dom')
+goog.require('mouse.query.Query');
 goog.setTestOnly();
 
 
@@ -16,10 +16,11 @@ test.mouse.query.Query.FindBody = function() {
 };
 goog.exportSymbol('test_FindBody', test.mouse.query.Query.FindBody);
 
+
 /**
  * Find all the elements.
  */
-test.mouse.query.Query.FindAll = function () {
+test.mouse.query.Query.FindAll = function() {
   var query = new mouse.query.Query('*');
 
   var root = document.createElement('div');
@@ -37,23 +38,23 @@ test.mouse.query.Query.FindAll = function () {
   goog.dom.append(element2, element5);
   goog.dom.append(element2, element6);
 
-  assertEquals(element1, query.first(root))
+  assertEquals(element1, query.first(root));
 
   assertArrayEquals(
-    [element1, element3, element4, element2, element5, element6],
-    query.all(root)
-  )
+      [element1, element3, element4, element2, element5, element6],
+      query.all(root)
+  );
 
   assertArrayEquals(
-    [element3, element4],
-    query.all(element1)
-  )
+      [element3, element4],
+      query.all(element1)
+  );
 
   assertArrayEquals(
-    [element5, element6],
-    query.all(element2)
-  )
+      [element5, element6],
+      query.all(element2)
+  );
 
 
-}
+};
 goog.exportSymbol('test_FindAll', test.mouse.query.Query.FindAll);

@@ -1,7 +1,7 @@
 goog.provide('mouse.query.Query');
+goog.require('goog.dom');
 goog.require('mouse.query.Compiler');
 goog.require('mouse.query.Parser');
-goog.require('goog.dom');
 
 
 
@@ -26,22 +26,23 @@ mouse.query.Query = function(query, opt_includeNodes) {
 
 /**
  * @private
- * @param {Node} node
+ * @param {!Node} node
  *        The current node.
- * @param {Node} context
+ * @param {!Node} context
  *        The context node.
  * @param {Array.<Node>} results
  *       The list of found nodes.
  */
 mouse.query.Query.prototype.all_ = function(node, context, results) {
-  node = node.firstChild;
-  while (node) {
-    if ((this.includeNodes || goog.dom.isElement(node)) &&
-      this.matches(node, context)) {
-      goog.array.insert(results, node);
+  /** @type {Node} */
+  var current = node.firstChild;
+  while (current) {
+    if ((this.includeNodes || goog.dom.isElement(current)) &&
+        this.matches(/** @type {!Node} */ (current), context)) {
+      goog.array.insert(results, /** @type {!Node} */ (current));
     }
-    this.all_(node, context, results);
-    node = node.nextSibling;
+    this.all_(current, context, results);
+    current = current.nextSibling;
   }
 };
 
@@ -54,7 +55,7 @@ mouse.query.Query.prototype.all_ = function(node, context, results) {
 mouse.query.Query.prototype.all = function(opt_node) {
   var node, results;
   results = [];
-  node = opt_node || document;
+  node = /** @type {!Node} */ (opt_node || document);
   this.all_(node, node, results);
   return results;
 };
@@ -62,25 +63,26 @@ mouse.query.Query.prototype.all = function(opt_node) {
 
 /**
  * @private
- * @param {Node} node
+ * @param {!Node} node
  *        The element node.
- * @param {Node} context
+ * @param {!Node} context
  *        The context.
  * @return {?Node} The node, if found.
  *
  */
 mouse.query.Query.prototype.first_ = function(node, context) {
-  node = node.firstChild;
-  while (node) {
-    if ((this.includeNodes || goog.dom.isElement(node)) &&
-      this.matches(node, context)) {
-      return node;
+  /** @type {Node} */
+  var current = node.firstChild;
+  while (current) {
+    if ((this.includeNodes || goog.dom.isElement(current)) &&
+        this.matches(/** @type {!Node} */ (current), context)) {
+      return /** @type {!Node} */ (current);
     }
-    var found = this.first_(node, context);
+    var found = this.first_(current, context);
     if (goog.isDefAndNotNull(found)) {
-      return found;
+      return  /** @type {!Node} */ (found);
     }
-    node = node.nextSibling;
+    current = current.nextSibling;
   }
   return null;
 };

@@ -79,7 +79,7 @@ goog.exportSymbol('test_Parse_Tagname',
  * Custom test
  */
 test.mouse.query.Parser.TestCache = function() {
-  var query1 = 'div > span'
+  var query1 = 'div > span';
   var ast1 = parser.parse(query1);
 
   var query2 = 'span > div';
@@ -90,7 +90,6 @@ test.mouse.query.Parser.TestCache = function() {
 };
 goog.exportSymbol('test_CacheTest',
     test.mouse.query.Parser.TestCache);
-
 
 
 /**
