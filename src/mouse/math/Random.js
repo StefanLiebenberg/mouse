@@ -72,6 +72,15 @@ mouse.math.Random.prototype.random = function() {
 
 
 /**
+ * @return {number}
+ *         A random number.
+ */
+mouse.math.Random.prototype.randomInteger = function() {
+  return this.nextState();
+};
+
+
+/**
  * Return a random integer between max and min values.
  * @param {number} min The minimum Number.
  * @param {number} max The maximum Number.
