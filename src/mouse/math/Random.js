@@ -1,3 +1,4 @@
+
 /**
  * @author siga.fredo@gmail.com (Stefan)
  * @fileoverview Provides a seedable random generator.
@@ -22,6 +23,9 @@ mouse.math.Random = function(opt_seed) {
 
 /**
  * Sets the state to the original seed. And steps an optional count in.
+ * @param {number=}  opt_count
+ *       The optional count to step in.
+ *
  */
 mouse.math.Random.prototype.reset = function(opt_count) {
   this.state_ = this.seed_;
