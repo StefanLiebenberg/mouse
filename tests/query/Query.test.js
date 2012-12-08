@@ -143,42 +143,42 @@ test.mouse.query.Query.Searches = function() {
   var e2 = document.createElement('div');
   goog.dom.append(root, e2);
 
-  for(var i = 0; i < 10000; i++) {
+  for (var i = 0; i < 10000; i++) {
 
-  var query_all = new mouse.query.Query('*');
+    var query_all = new mouse.query.Query('*');
 
-  assertArrayEquals(
-      [e1, e1_1, e1_1_1, e1_1_2, e1_1_3, e1_2, e2],
-      query_all.all(root));
+    assertArrayEquals(
+        [e1, e1_1, e1_1_1, e1_1_2, e1_1_3, e1_2, e2],
+        query_all.all(root));
 
-  // tagname
-  var query_tagname = new mouse.query.Query('div');
-  assertArrayEquals(
-      [e1, e1_2, e2],
-      query_tagname.all(root));
-
-
-  // classname
-  var query_classname = new mouse.query.Query('.foo');
-
-  // identity
-  var query_id = new mouse.query.Query('#foobar');
-
-  // directive
-  var query_directive = new mouse.query.Query(':not(div)');
-
-  // compostition
-  var query_composition = new mouse.query.Query('div:not(div)');
-
-  // group
-  var query_group = new mouse.query.Query('div,span');
-
-  var query_parent = new mouse.query.Query('div > span');
-
-  var query_ancestor = new mouse.query.Query('div a');
+    // tagname
+    var query_tagname = new mouse.query.Query('div');
+    assertArrayEquals(
+        [e1, e1_2, e2],
+        query_tagname.all(root));
 
 
-  };
+    // classname
+    var query_classname = new mouse.query.Query('.foo');
+
+    // identity
+    var query_id = new mouse.query.Query('#foobar');
+
+    // directive
+    var query_directive = new mouse.query.Query(':not(div)');
+
+    // compostition
+    var query_composition = new mouse.query.Query('div:not(div)');
+
+    // group
+    var query_group = new mouse.query.Query('div,span');
+
+    var query_parent = new mouse.query.Query('div > span');
+
+    var query_ancestor = new mouse.query.Query('div a');
+
+
+  }
 
 
 

@@ -33,15 +33,16 @@ mouse.query.Compiler.MatchFn;
  */
 mouse.query.Compiler.prototype.compile = function(ast) {
   var query = ast.toString();
-  if(this.store_.containsKey(query)){
+  if (this.store_.containsKey(query)) {
     return /** @type {mouse.query.Compiler.MatchFn} */ (
-      this.store_.get(query));
+        this.store_.get(query));
   } else {
     var matchFn = this.compileInternal(ast);
     this.store_.set(query, matchFn);
     return matchFn;
   }
-}
+};
+
 
 /**
  *
@@ -228,8 +229,8 @@ mouse.query.Compiler.Directives = {
     var parser = new mouse.query.Parser();
     var fn = compiler.compile(parser.parse(query));
 
-      return goog.functions.not(
-          /** @type {!mouse.query.Compiler.MatchFn} */ (fn));
+    return goog.functions.not(
+        /** @type {!mouse.query.Compiler.MatchFn} */ (fn));
 
   }
 };
