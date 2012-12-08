@@ -1,5 +1,6 @@
 goog.provide('mouse.query.ast.Composition');
 goog.require('mouse.query.ast.Element');
+goog.require('mouse.query.ast.Type');
 
 
 
@@ -12,6 +13,7 @@ goog.require('mouse.query.ast.Element');
   *
  */
 mouse.query.ast.Composition = function(list) {
+  goog.base(this, mouse.query.ast.Type.COMPOSITION);
   this.elements = list;
 };
 goog.inherits(mouse.query.ast.Composition, mouse.query.ast.Element);

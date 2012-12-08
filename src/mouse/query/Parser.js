@@ -61,7 +61,7 @@ mouse.query.Parser.prototype.parseInternal = function(query) {
 
   var p = 0, b = 0;
 
-  var groups = [], last = 0;
+  var groups = [], glast = 0;
   for (var i = 0; i < length; i++) {
     switch (query[i]) {
       case '(':
@@ -74,14 +74,17 @@ mouse.query.Parser.prototype.parseInternal = function(query) {
         b--; break;
       case ',':
         if (p === 0 && b === 0) {
-          groups.push(query.substring(last, i));
-          last = i;
+          groups.push(query.substring(glast, i));
+          glast = i + 1;
         }
     }
   }
+  if (glast !== 0) {
+    groups.push(query.substring(glast, i));
+  }
 
   if (groups.length > 0) {
-    return new mouse.query.ast.Group(groups);
+    return new mouse.query.ast.Group(goog.array.map(groups, this.parse, this));
   }
 
 
@@ -123,7 +126,7 @@ mouse.query.Parser.prototype.parseInternal = function(query) {
     }
   }
 
-  var composition = [], last = 0;
+  var composition = [], clast = 0;
   for (var i = 0; i < length; i++) {
     switch (query[i]) {
       case '(':
@@ -138,17 +141,17 @@ mouse.query.Parser.prototype.parseInternal = function(query) {
       case '#':
       case ':':
         if (i !== 0) {
-          composition.push(query.substring(last, i));
-          last = i;
+          composition.push(query.substring(clast, i));
+          clast = i;
         }
         break;
       case '*':
         composition.push('*');
-        last = i;
+        clast = i;
     }
   }
-  if (last !== i) {
-    composition.push(query.substring(last, i));
+  if (clast !== i) {
+    composition.push(query.substring(clast, i));
   }
 
   var items = goog.array.map(composition, function(item) {
@@ -165,8 +168,8 @@ mouse.query.Parser.prototype.parseInternal = function(query) {
           name = part;
           content = null;
         } else {
-          name = part.substring(0, idx - 1);
-          content = part.substring(idx, item.length - 1);
+          name = part.substring(0, idx);
+          content = part.substring(idx + 1, item.length - 2);
         }
         return new mouse.query.ast.Directive(name, content);
       case '.':

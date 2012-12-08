@@ -11,5 +11,7 @@ mouse.query.ast.Type = {
   ID: 'id',
   TAGNAME: 'tagname',
   CLASSNAME: 'classname',
+  COMPOSITION: 'composition',
+  GROUP: 'group',
   DIRECTIVE: 'directive'
 };

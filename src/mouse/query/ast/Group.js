@@ -1,5 +1,6 @@
 goog.provide('mouse.query.ast.Group');
 goog.require('mouse.query.ast.Element');
+goog.require('mouse.query.ast.Type');
 
 
 
@@ -12,6 +13,8 @@ goog.require('mouse.query.ast.Element');
   *
  */
 mouse.query.ast.Group = function(list) {
+  goog.base(this, mouse.query.ast.Type.GROUP);
+
   this.elements = list;
 };
 goog.inherits(mouse.query.ast.Group, mouse.query.ast.Element);

@@ -116,4 +116,36 @@ goog.exportSymbol('test_Parse_Custom',
     test.mouse.query.Parser.ParseCustom);
 
 
+/**
+ * Test Directive
+ *
+ */
+test.mouse.query.Parser.ParseDirective = function() {
+  var query = ':not(div)';
+  var ast = parser.parse(query);
+
+  assertTrue(ast instanceof mouse.query.ast.Directive);
+  assertEquals('not', ast.name);
+  assertEquals('div', ast.content);
+
+};
+goog.exportSymbol('test_Parse_Directive',
+    test.mouse.query.Parser.ParseDirective);
+
+
+/**
+ * Parsing Group.
+ */
+test.mouse.query.Parser.ParseGroup = function() {
+  var query = 'div,span';
+  var ast = parser.parse(query);
+  assertTrue(ast instanceof mouse.query.ast.Group);
+  assertEquals(2, ast.elements.length);
+  assertTrue(ast.elements[0] instanceof mouse.query.ast.Tagname);
+  assertEquals('DIV', ast.elements[0].tagname);
+  assertTrue(ast.elements[1] instanceof mouse.query.ast.Tagname);
+  assertEquals('SPAN', ast.elements[1].tagname);
+};
+goog.exportSymbol('test_Parse_Group',
+    test.mouse.query.Parser.ParseGroup);
 
