@@ -97,4 +97,3 @@ mouse.query.Query.prototype.first = function(opt_node) {
   var node = opt_node || document;
   return this.first_(node, node);
 };
-
