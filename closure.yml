@@ -1,0 +1,6 @@
+outputDirectory: build
+javascriptSourceDirectories:
+- src
+javascriptEntryPoints:
+- mouse
+shouldCompile: true
