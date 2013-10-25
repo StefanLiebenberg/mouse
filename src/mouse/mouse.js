@@ -7,14 +7,15 @@ goog.require('mouse.query.Query');
  * @expose
  */
 mouse.api = {};
+goog.exportSymbol('mouse.api', mouse.api);
 
 /**
  * @expose
  * @param {string} queryString
  * @returns {mouse.query.Query}
  */
-mouse.api.query = function (queryString) {
-     return new mouse.query.Query(queryString);
+mouse.api.query = function(queryString) {
+  return new mouse.query.Query(queryString);
 };
 
 /**

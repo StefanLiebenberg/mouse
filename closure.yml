@@ -2,6 +2,8 @@ outputDirectory: build
 javascriptDependencyOutputFile: build/deps.js
 javascriptSourceDirectories:
 - src
+javascriptTestsDirectories:
+- tests
 javascriptEntryPoints:
 - mouse
 shouldCompile: true
