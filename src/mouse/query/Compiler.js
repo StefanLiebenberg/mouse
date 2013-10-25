@@ -1,6 +1,7 @@
 goog.provide('mouse.query.Compiler');
 goog.require('goog.dom.classes');
 goog.require('goog.functions');
+goog.require('goog.structs.Map');
 goog.require('mouse.query.Parser');
 goog.require('mouse.query.ast.Ancestor');
 goog.require('mouse.query.ast.Classname');
