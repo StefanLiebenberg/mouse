@@ -1,5 +1,5 @@
 build/scripts.js: 
-	java -jar bin/closure-cli.jar javascript;
+	java -jar bin/closure-cli.jar build javascript --compile
 
-clear:
+clean:
 	rm -rf build;
