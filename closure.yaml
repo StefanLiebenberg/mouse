@@ -1,0 +1,10 @@
+outputDirectory: build
+javascript:
+  dependencyFile: build/deps.js
+  sourceDirectories:
+  - src
+  testDirectories:
+  - tests
+  entryPoints:
+  - mouse
+
